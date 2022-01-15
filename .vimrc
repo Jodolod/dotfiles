@@ -5,20 +5,71 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
-Plug 'preservim/nerdtree'
+"call plug#begin('~/.vim/plugged')
+call plug#begin()
+Plug 'scrooloose/nerdtree' 
+Plug 'jistr/vim-nerdtree-tabs'
 Plug 'dracula/vim',{'as':'dracula'}
-"Plug 'altercation/vim-colors-solarized' 
+
+" #############################
+" Plugins programming languages
+" #############################
+" javascript
+"" Javascript Bundle
+Plug 'jelera/vim-javascript-syntax'
+
 " Initialize plugin system
 call plug#end()
 colorscheme dracula
-" enter the current millenium
+syntax on
 
+" ##########################
+" Plugin Settings
+" ##########################
+"" NERDTree configuration
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+let g:NERDTreeWinSize = 50
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+nnoremap <silent> <F2> :NERDTreeFind<CR>
+noremap <F3> :NERDTreeToggle<CR>
+
+"" Autostart NERDTree and switch back to editor window
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+"" NERDTree Bookmark Config
+" Store the bookmarks file
+let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
+" Show the bookmarks table on startup
+let NERDTreeShowBookmarks=1
+
+" ##########################
+" General Settings 
+" ##########################
+" enter the current millenium
 set nocompatible
 set backspace=indent,eol,start
+
+language en_US
+
+" SYSTEM CLIPBOARD
+" Use systemclipboard
+set clipboard^=unnamed,unnamedplus
+
+"" set default identation
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set laststatus=2
 
 " FINDING FILES:
 
