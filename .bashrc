@@ -12,6 +12,8 @@ then
 fi
 export PATH
 
+
+
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
@@ -35,3 +37,5 @@ parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
+# Prompt 
+PS1='\u@\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\]\h\[`tput sgr0`\] [$PWD]\e[0;36m $(parse_git_branch)\e[m\$ '
