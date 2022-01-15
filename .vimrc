@@ -10,11 +10,15 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 Plug 'preservim/nerdtree'
-Plug 'altercation/vim-colors-solarized' 
+Plug 'dracula/vim',{'as':'dracula'}
+"Plug 'altercation/vim-colors-solarized' 
 " Initialize plugin system
 call plug#end()
+colorscheme dracula
 " enter the current millenium
+
 set nocompatible
+set backspace=indent,eol,start
 
 " FINDING FILES:
 
@@ -64,29 +68,6 @@ command! MakeTags !ctags -R .
 "------------------
 syntax on " turn on syntax highlighting
 set showmatch " show matching braces when text indicator is over them
-
-" vim can autodetect this based on $TERM (e.g. 'xterm-256color')
-" but it can be set to force 256 colors
-" set t_Co=256
-if has('gui_running')
-    colorscheme solarized
-    let g:lightline = {'colorscheme': 'solarized'}
-elseif &t_Co < 256
-    colorscheme default
-    set nocursorline " looks bad in this mode
-else
-    set background=dark
-    let g:solarized_termcolors=256 " instead of 16 color with mapping in terminal
-    colorscheme solarized
-    " customized colors
-    highlight SignColumn ctermbg=234
-    highlight StatusLine cterm=bold ctermfg=245 ctermbg=235
-    highlight StatusLineNC cterm=bold ctermfg=245 ctermbg=235
-    let g:lightline = {'colorscheme': 'dark'}
-    highlight SpellBad cterm=underline
-    " patches
-    highlight CursorLineNr cterm=NONE
-endif
 
 filetype plugin indent on " enable file type detection
 set autoindent
