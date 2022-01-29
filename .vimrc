@@ -63,7 +63,7 @@ language en_US
 
 " SYSTEM CLIPBOARD
 " Use systemclipboard
-set clipboard^=unnamed,unnamedplus
+set clipboard+=unnamed,unnamedplus
 
 "" set default identation
 set tabstop=4
