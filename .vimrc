@@ -11,9 +11,8 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 "call plug#begin('~/.vim/plugged')
 call plug#begin()
-Plug 'scrooloose/nerdtree' 
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'dracula/vim',{'as':'dracula'}
+Plug 'rust-lang/rust.vim'
 
 " #############################
 " Plugins programming languages
@@ -30,28 +29,24 @@ syntax on
 " ##########################
 " Plugin Settings
 " ##########################
-"" NERDTree configuration
-let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
-let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 50
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-nnoremap <silent> <F2> :NERDTreeFind<CR>
-noremap <F3> :NERDTreeToggle<CR>
-
-"" Autostart NERDTree and switch back to editor window
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-
-"" NERDTree Bookmark Config
-" Store the bookmarks file
-let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
-" Show the bookmarks table on startup
-let NERDTreeShowBookmarks=1
-
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+  autocmd VimEnter * wincmd p
+augroup END
+" close if final buffer is netrw or the quickfix
+augroup finalcountdown
+ au!
+ autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q|endif
+" autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) || &buftype == 'quickfix' | q | endif
+nmap - :Lexplore<cr>
+"nmap - :NERDTreeToggle<cr>
+augroup END
 " ##########################
 " General Settings 
 " ##########################
