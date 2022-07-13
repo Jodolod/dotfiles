@@ -17,6 +17,7 @@ require "paq" {
 	"nvim-telescope/telescope.nvim";
   "lewis6991/gitsigns.nvim";
   "mcchrish/nnn.vim";
+  "tpope/vim-fugitive";
 }
 
 -- essentials

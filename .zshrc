@@ -155,8 +155,12 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:"/opt/homebrew/opt/openssl@1.1/bin"
+
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
 alias vim=nvim
 export TOKENSCHLEUDER_SOURCE_PROFILE=default-long-term
 export TOKENSCHLEUDER_DESTINATION_PROFILE=default
@@ -168,3 +172,6 @@ source /Users/nikolai/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-synt
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl/lib/pkgconfig 
+
